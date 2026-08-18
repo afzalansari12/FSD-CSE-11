@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo fetch in js</title>
+    <script>
+        const URL="https://dummyjson.com/products";
+        async function loadproduct(){
+            try{
+            const res = await fetch(URL);
+            const data = await res(JSON);
+
+            console.log("data = ",data);
+            }catch (error){
+                 console.log(err);
+            } 
+        }
+
+        loadproduct();
+        const  ele1 = document.getElementById("data");
+        data.products.map((i)=>{
+            <tr>
+                <td>${i.id}</td>
+                <td>${i.title}</td>
+
+                <td>${i.price}</td>
+                <td>${i.rating}</td>
+
+                <td>${i.category}</td>
+
+
+            </tr>
+        })
+    </script>
+
+    <style>
+        table{
+            margin: auto;
+            background-color: aqua;
+            color: red;
+            border : 2px solid blue;
+        }
+        th td {
+            border : 1px sollid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th{
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+  
+
+        <thead>
+            <tr>
+                <th>sr no.</th>
+                <th>title</th>
+                <th>price</th>
+                <th>rating</th>
+                <th>category</th>
+                
+            </tr>
+        </thead>
+
+        <tbody id="data">
+          <tr>
+
+          </tr>
+        </tbody>
+      
+
+    
+</body>
+</html>
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo fetch in js</title>
+    <script>
+        const URL="https://dummyjson.com/products";
+        async function loadproduct(){
+            try{
+            const res = await fetch(URL);
+            console.log("res",res);
+            }catch (error){
+                 console.log(err);
+            } 
+        }
+
+        loadproduct();
+    </script>
+</head>
+<body>
+
+
+    
+</body>
+</html> -->

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+   
+
+    async function  loadproducts(){
+
+      const URL="https://dummyjson.com/products?limit=10&skip=2";
+      try{
+        const res=await fetch(URL);
+        // console.log("res",res)
+        const data=await res.json()
+        // console.log("data",data.products)
+         let rows=""
+        data.products.map((i,index)=>{
+             rows = rows+`
+             <tr>
+               <td>${index + 1}</td>
+                <td>${i.title}</td>
+                <td><img src="${i.images}" width="100" height="100" alt="${i.title}"></td>
+                <td>${i.category}</td>
+                <td>${i.rating}</td>
+                <td>${(i.price*rate).toFixed(2)}</td>
+                <td>${i.stock}</td>
+                <td><button>buy</button></td>
+
+             </tr>
+             `;
+          });
+        const el = document.getElementById("data");
+        el.innerHTML=rows;
+      }
+      
+      catch(err){
+        console.log(err)
+      }
+    }
+    async function getrate() {
+    const URL = "https://open.er-api.com/v6/latest/USD";
+
+    try {
+        const res = await fetch(URL);
+        const rate = await res.json();
+        console.log("INR Rate =", rate.rates.INR);
+        return rate.rates.INR;
+    } catch (err) {
+        console.log("Error =", err);
+    }
+}
+  const test = async()=>{
+    rate = await getrate();
+    cosnole.log("rate",rate);
+
+  }  
+    test();
+   loadproducts();
+
+  </script>
+  <style>
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+
+        th {
+            background-color: steelblue;
+                color: white;
+        }
+
+        td {
+            text-align: center;
+      }
+    table{
+        background-color: aqua;
+        border: 2px solid black;
+        background-color: lightblue;
+        margin: auto;
+        width: 80vh;
+
+    }
+  </style>
+</head>
+<body>
+   <h1>
+     <center>
+        list of products
+     </center>
+   </h1>
+   <table>
+     <tr>
+           <th>sr no.</th>
+           <th>title</th>
+           <th>image</th>
+           <th>category</th>
+           <th>rating </th>
+           <th>price</th>
+           <th>stock</th>
+           <th>action</th>
+     </tr>
+     <tbody id="data"></tbody>
+   </table>
+</body>
+</html>
