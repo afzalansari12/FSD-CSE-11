@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: scorecard-management-system
+    runtime: node
+    repo: https://github.com/afzalansari12/FSD-CSE-11.git
+    branch: dev_afzal
+    rootDir: scorecard_managementsystem
+    buildCommand: npm install && cd client && npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
